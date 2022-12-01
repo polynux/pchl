@@ -3,7 +3,7 @@ name: default
 
 steps:
   - name: build
-    image: node:16
+    image: node:lts-alpine
     commands:
       - npm install
       - npm run build
