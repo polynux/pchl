@@ -1,0 +1,9 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: build
+    image: node:16
+    commands:
+      - npm install
+      - npm run build
