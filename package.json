@@ -10,7 +10,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@builder.io/react": "^2.0.13",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@prisma/client": "^4.8.0",
