@@ -17,18 +17,18 @@ function Header() {
       <nav>
         <ul className="flex items-center gap-2 space-x-4">
           <li>
-            <Link href="/le-club">Le club</Link>
+            <Link href="/le-club" className="text-xl">Le club</Link>
           </li>
           <li>
-            <Link href="/galeries">Galeries</Link>
+            <Link href="/galeries" className="text-xl">Galeries</Link>
           </li>
           <li>
-            <Link href="/contact">Contact</Link>
+            <Link href="/contact" className="text-xl">Contact</Link>
           </li>
           <li>
             <Link
               href="/espace-membres"
-              className="bg-white px-6 py-2 text-stone-900"
+              className="bg-white px-6 py-2 text-xl text-stone-900"
             >
               Espace membres
             </Link>
