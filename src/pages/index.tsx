@@ -4,7 +4,13 @@ import { FaGithub } from "react-icons/fa";
 
 function Header() {
   return (
-    <header className="flex w-full items-center justify-between bg-slate-800 p-8 text-white">
+    <header
+      className="flex w-full items-center justify-between p-8 text-white"
+      style={{
+        background:
+          "linear-gradient(180deg, rgba(30, 29, 29, 0.8) 0%, rgba(38, 38, 38, 0.61) 37%, rgba(40, 40, 40, 0.49) 59%, rgba(255, 255, 255, 0) 100%)",
+      }}
+    >
       <Link href="/">
         <Image src="/logo.png" alt="My Site Logo" width={128} height={77} />
       </Link>
@@ -37,34 +43,32 @@ function Footer() {
   return (
     <footer className="absolute bottom-0 w-full bg-neutral-800">
       <div className="container mx-auto p-8">
-        <div className="flex flex-col items-center justify-between md:flex-row">
-          <div className="flex items-center md:flex-row">
-            <div className="flex items-center">
-              <Image
-                src="/logo.png"
-                alt="My Site Logo"
-                width={128}
-                height={77}
-              />
-            </div>
-            <div className="ml-4 flex flex-col">
-              <span className="text-neutral-300">
-                © 2023 Photo Club de Haute Lozère
-              </span>
-              <span className="text-neutral-300">Tous droits réservés</span>
-            </div>
-            <div className="ml-4 flex">
-              <span className="text-neutral-300">Développé par </span>
-              <span className="text-neutral-300">
-                <a
-                  href="https://github.com/polynux"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  polynux <FaGithub />
-                </a>
-              </span>
-            </div>
+        <div className="flex items-center justify-around md:flex-row">
+          <div className="flex items-center">
+            <Image
+              src="/logo.png"
+              alt="Logo photo club haute lozère"
+              width={128}
+              height={77}
+            />
+          </div>
+          <div className="ml-4 flex flex-col items-center">
+            <span className="text-neutral-300">
+              © 2023 Photo Club de Haute Lozère
+            </span>
+            <span className="text-neutral-300">Tous droits réservés</span>
+          </div>
+          <div className="ml-4 flex">
+            <span className="text-neutral-300">
+              Développé par{" "}
+              <a
+                href="https://github.com/polynux"
+                target="_blank"
+                rel="noreferrer"
+              >
+                polynux <FaGithub className="inline" />
+              </a>
+            </span>
           </div>
         </div>
       </div>
@@ -85,7 +89,13 @@ function Layout({ children }: { children: React.ReactNode }) {
 function Home() {
   return (
     <Layout>
-      <h1>My Site</h1>
+      <Image
+        src="/IMG_2439-CLUB-3 2.png"
+        alt=""
+        width={1920}
+        height={500}
+        className="absolute top-0 -z-10"
+      />
     </Layout>
   );
 }
