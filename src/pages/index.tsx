@@ -17,18 +17,18 @@ function Header() {
       <nav>
         <ul className="flex items-center gap-2 space-x-4">
           <li>
-            <Link href="/le-club" className="text-xl">Le club</Link>
+            <Link href="/le-club" className="text-xl font-poppins">Le club</Link>
           </li>
           <li>
-            <Link href="/galeries" className="text-xl">Galeries</Link>
+            <Link href="/galeries" className="text-xl font-poppins">Galeries</Link>
           </li>
           <li>
-            <Link href="/contact" className="text-xl">Contact</Link>
+            <Link href="/contact" className="text-xl font-poppins">Contact</Link>
           </li>
           <li>
             <Link
               href="/espace-membres"
-              className="bg-white px-6 py-2 text-xl text-stone-900"
+              className="bg-white px-6 py-2 text-xl text-stone-900 font-poppins"
             >
               Espace membres
             </Link>
@@ -80,7 +80,7 @@ function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div>
       <Header />
-      {children}
+        <main className="container mx-auto p-8">{children}</main>
       <Footer />
     </div>
   );
@@ -94,8 +94,11 @@ function Home() {
         alt=""
         width={1920}
         height={500}
-        className="absolute top-0 -z-10"
+        className="absolute top-0 left-0 -z-10"
       />
+      <div className="content mt-[400px]">
+        <h1 className="text-5xl font-bold font-poppins">Notre club photo</h1>
+      </div>
     </Layout>
   );
 }
