@@ -37,6 +37,10 @@ jobs:
   - key: npm-cache
     path: /root/.npm
   timeout: 3600
+  postBuildActions:
+  - !RunJobAction
+    condition: successful
+    jobName: deploy
 - name: deploy
   steps:
   - !BuildImageStep
