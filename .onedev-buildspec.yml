@@ -20,6 +20,7 @@ jobs:
       commands:
       - npm install
       - export CI=TRUE
+      - export DATABASE_URL=file:./db.sqlite
       - npx next build
       - npx next lint
     useTTY: false
