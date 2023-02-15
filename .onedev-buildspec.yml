@@ -1,0 +1,6 @@
+version: 19
+services:
+- name: run
+  image: node:lts-hydrogen
+  arguments: npm start
+  readinessCheckCommand: npm run build
