@@ -22,8 +22,11 @@ jobs:
       - export CI=TRUE
       - export DATABASE_URL=file:./db.sqlite
       - npx next build
-      - npx next lint
     useTTY: false
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !PublishArtifactStep
+    name: publish
+    artifacts: '*'
     condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   triggers:
   - !BranchUpdateTrigger {}
@@ -33,6 +36,21 @@ jobs:
   caches:
   - key: npm-cache
     path: /root/.npm
+  timeout: 3600
+- name: deploy
+  steps:
+  - !BuildImageStep
+    name: deploy
+    tags: pchl:latest
+    publish: false
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  jobDependencies:
+  - jobName: next build
+    requireSuccessful: true
+    artifacts: '**'
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
   timeout: 3600
 services:
 - name: run
