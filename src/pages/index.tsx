@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Head from "next/head";
 import { FaGithub } from "react-icons/fa";
 
 function Header() {
@@ -76,9 +77,32 @@ function Footer() {
   );
 }
 
-function Layout({ children }: { children: React.ReactNode }) {
+function Layout({ children, title }: { children: React.ReactNode, title?: string }) {
   return (
     <div>
+      <Head>
+        <title>{title} | Photo Club Haute Lozère</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content="Site du photo club de Haute Lozère" />
+        <meta name="keywords" content="photo, club, haute, lozère" />
+        <meta name="author" content="polynux" />
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="fr" />
+        <meta property="og:title" content="Photo Club de Haute Lozère" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://photoclubhautelozere.fr" />
+        <meta property="og:image" content="/logo.png" />
+        <meta property="og:description" content="Site du photo club de Haute Lozère" />
+        <meta property="og:site_name" content="Photo Club de Haute Lozère" />
+        <meta property="og:locale" content="fr_FR" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@polynux" />
+        <meta name="twitter:creator" content="@polynux" />
+        <meta name="twitter:title" content="Photo Club de Haute Lozère" />
+        <meta name="twitter:description" content="Site du photo club de Haute Lozère" />
+        <meta name="twitter:image" content="/logo.png" />
+      </Head>
       <Header />
       <main>{children}</main>
       <Footer />
@@ -88,7 +112,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 
 function Home() {
   return (
-    <Layout>
+    <Layout title="Accueil">
       <Image
         src="/IMG_2439-CLUB-3 2.png"
         alt=""
