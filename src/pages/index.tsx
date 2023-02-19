@@ -44,14 +44,14 @@ function Footer() {
     <footer className="w-full bg-neutral-800">
       <div className="container mx-auto p-8">
         <div className="flex items-center justify-around md:flex-row">
-          <div className="flex items-center">
+          <Link className="flex items-center" href="/">
             <Image
               src="/logo.png"
               alt="Logo photo club haute lozère"
               width={128}
               height={77}
             />
-          </div>
+          </Link>
           <div className="ml-4 flex flex-col items-center">
             <span className="text-neutral-300">
               © 2023 Photo Club de Haute Lozère
@@ -94,7 +94,6 @@ function Home() {
         alt=""
         width={1920}
         height={500}
-        className="top-0 left-0"
       />
       <div className="container mx-auto p-8">
         <div className="mb-4 flex gap-10">
