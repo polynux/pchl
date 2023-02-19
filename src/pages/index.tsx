@@ -119,7 +119,7 @@ function Home() {
           </p>
           <p className="text-xl">
             Le club propose à ses adhérents de partager en groupe la
-            pratique de la photographie, de l'initiation à des techniques plus
+            pratique de la photographie, de l&apos;initiation à des techniques plus
             avancées et en découvrir les multiples facettes.
           </p>
           <p className="text-xl">
