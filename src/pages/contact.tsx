@@ -8,7 +8,7 @@ export default function Contact() {
           <h1 className="text-4xl font-bold">Contact</h1>
           <div className="flex flex-col gap-6">
             <p className="text-xl">
-              Vous pouvez nous contacter par mail à l&apos;adresse suivante : {" "} 
+              Vous pouvez nous contacter par mail à l&apos;adresse suivante : {" "}
               <a href="mailto:contact@pchl.fr" className="text-stone-900">contact@pchl.fr</a>
             </p>
             <p className="text-xl">
