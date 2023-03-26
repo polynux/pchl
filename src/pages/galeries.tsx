@@ -3,7 +3,13 @@ import Image from "next/image";
 
 import styles from "../styles/Galerie.module.css";
 
-export default function Galeries({ pictures }: { pictures: string[] }) {
+type Picture = {
+  src: string;
+  alt: string;
+  className?: string;
+}
+
+export default function Galeries({ pictures }: { pictures: [] }) {
   return (
     <Layout title="Galeries">
       <div className="container mx-auto p-8">
@@ -13,7 +19,7 @@ export default function Galeries({ pictures }: { pictures: string[] }) {
             <div className="separator w-1/2 border-b-2 border-slate-800"></div>
           </div>
           <div className={styles["grid-wrapper"]}>
-            {pictures?.map((picture) => (
+            {pictures?.map((picture: Picture) => (
               <div key={picture.src} className={picture.className}>
                 <Image
                   src={picture.src}
@@ -33,7 +39,7 @@ export default function Galeries({ pictures }: { pictures: string[] }) {
 }
 
 export function getServerSideProps() {
-  let pictures = [];
+  const pictures: Picture[] = [];
   const classes = ["wide", "tall", "big", ""];
   for (let i = 0; i < 10; i++) {
     pictures.push({
