@@ -1,4 +1,4 @@
-import { Layout } from "./index";
+import Layout from "@/layouts/Home";
 import Image from "next/image";
 
 export default function LeClub() {
