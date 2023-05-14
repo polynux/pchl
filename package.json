@@ -7,7 +7,8 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "gen-types": "sh ./scripts/gen-types-from-pb.sh"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
@@ -40,6 +41,7 @@
     "autoprefixer": "^10.4.14",
     "eslint": "^8.40.0",
     "eslint-config-next": "13.1.2",
+    "pocketbase-typegen": "^1.1.9",
     "postcss": "^8.4.23",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.2.8",

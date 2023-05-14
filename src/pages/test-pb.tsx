@@ -1,18 +1,34 @@
 import Layout from "@/layouts/Home"
-import { api } from "@/utils/api";
+import { getPages } from "@/utils/pb"
+import { PagesRecord } from "@/@types/pocketbase-types"
 
-export default function Test() {
-    const json = api.example.pbPages.useQuery();
+export default function Test({ json }: { json: PagesRecord[]}) {
+  console.log(json)
 
   return (
     <Layout>
-      {json.data?.map((page) => (
-        <div key={page?.id}>
-          <p>{page?.id}</p>
-          <h1>{page?.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: page?.field }} />
+      {json.map((page: PagesRecord) => (
+        <div key={page.slug}>
+          <p>{page.slug}</p>
+          <h1>{page.title}</h1>
         </div>
       ))}
     </Layout>
   )
+}
+
+export async function getServerSideProps() {
+
+  const {data, error} = await getPages();
+  if (error || !data) {
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    props: {
+      json: JSON.parse(JSON.stringify(data)),
+    },
+  }
 }
