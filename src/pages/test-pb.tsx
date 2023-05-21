@@ -1,6 +1,6 @@
 import Layout from "@/layouts/Home"
 import { getPages } from "@/utils/pb"
-import { PagesRecord } from "@/@types/pocketbase-types"
+import type { PagesRecord } from "@/@types/pocketbase-types"
 
 export default function Test({ json }: { json: PagesRecord[]}) {
   console.log(json)

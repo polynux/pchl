@@ -32,7 +32,6 @@ export type AuthSystemFields<T = never> = {
 // Record types for each collection
 
 export type PagesRecord<Tcontent = unknown> = {
-	field?: HTMLString
 	content?: null | Tcontent
 	title?: string
 	slug?: string
