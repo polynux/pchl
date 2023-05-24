@@ -15,11 +15,11 @@ function parseBoldText(text: string) {
   return result;
 }
 
-function Paragraph({text}: {text: string}) {
+function Paragraph({ text }: { text: string }) {
   return <p className='text-xl'>{parseBoldText(text)}</p>
 }
 
-function Heading({text, level}: {text: string, level: number}) {
+function Heading({ text, level }: { text: string, level: number }) {
   switch (level) {
     case 1:
       return (
@@ -62,22 +62,22 @@ type Content = {
   time: number,
 }
 
-export default function Page({data}: {slug: string, data: PagesRecord<Content>}) {
+export default function Page({ data }: { slug: string, data: PagesRecord<Content> }) {
   return (
     <Layout title={data.title}>
       <div className="container mx-auto p-8">
         <p>Here is the content rendered:</p>
         <div className="flex flex-col gap-6">
-        {data.content && data.content.blocks.map((block, index): (JSX.Element | null) => {
-          switch (block.type) {
-            case 'paragraph':
-              return <Paragraph key={index} text={block.data.text} />
-            case 'header':
-              return <Heading key={index} text={block.data.text} level={block.data.level} />
-            default:
-              return <p key={index}>Unknown block type: <pre>{JSON.stringify(block, null, 2)}</pre></p>
-          }
-        })}
+          {data.content && data.content.blocks.map((block, index): (JSX.Element | null) => {
+            switch (block.type) {
+              case 'paragraph':
+                return <Paragraph key={index} text={block.data.text} />
+              case 'header':
+                return <Heading key={index} text={block.data.text} level={block.data.level} />
+              default:
+                return <p key={index}>Unknown block type: <pre>{JSON.stringify(block, null, 2)}</pre></p>
+            }
+          })}
         </div>
       </div>
       <pre>{JSON.stringify(data.content, null, 2)}</pre>
@@ -85,8 +85,8 @@ export default function Page({data}: {slug: string, data: PagesRecord<Content>})
   )
 }
 
-export async function getServerSideProps({params}: {params: {slug: string}}) {
-  const {data, error} = await getPageBySlug(params.slug);
+export async function getServerSideProps({ params }: { params: { slug: string } }) {
+  const { data, error } = await getPageBySlug(params.slug);
   if (error || !data) {
     return {
       notFound: true,
