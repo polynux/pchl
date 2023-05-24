@@ -56,4 +56,16 @@ async function updatePage(id: string, data: PagesRecord) {
   }
 }
 
-export { pb, getPages, getPageById, getPageBySlug, createPage, updatePage };
+async function getIdFromSlug(slug: string) {
+  try {
+    const res = await pb
+      .collection("pages")
+      .getFirstListItem('slug="' + slug + '"');
+    return { data: res.id };
+  } catch (error) {
+    console.log(error);
+    return { error };
+  }
+}
+
+export { pb, getPages, getPageById, getPageBySlug, createPage, updatePage, getIdFromSlug };

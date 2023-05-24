@@ -1,5 +1,6 @@
 import { memo, useEffect, useRef } from "react";
-import EditorJS, { OutputData } from "@editorjs/editorjs";
+import EditorJS from "@editorjs/editorjs";
+import type { OutputData } from "@editorjs/editorjs";
 import { EDITOR_JS_TOOLS } from "@/utils/tools";
 
 type Props = {
@@ -17,7 +18,7 @@ const EditorBlock = ({ data, onChange, holder }: Props) => {
         holder: holder,
         tools: EDITOR_JS_TOOLS,
         data,
-        async onChange(api, event) {
+        async onChange(api) {
           const data = await api.saver.save();
           onChange(data);
         },
