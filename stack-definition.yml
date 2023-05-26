@@ -6,7 +6,7 @@ services:
     volumes:
       - pchl:/app
     environment:
-      - PB_API:{{PB_API}}
+      - PB_API={{PB_API}}
     ports:
       - "19080:19080"
     deploy:
