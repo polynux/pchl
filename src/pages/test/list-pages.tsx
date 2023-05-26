@@ -1,5 +1,4 @@
 import type { PagesRecord } from "@/@types/pocketbase-types";
-import { getPages } from "@/utils/pb";
 import Layout from "@/layouts/Home";
 
 export default function ListPages({ data }: { data: PagesRecord[] }) {
@@ -22,6 +21,7 @@ export default function ListPages({ data }: { data: PagesRecord[] }) {
 }
 
 export async function getServerSideProps() {
+  const { getPages } = await import("@/utils/pb");
   const { data, error } = await getPages();
   if (error || !data) {
     return {
