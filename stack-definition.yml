@@ -4,11 +4,11 @@ services:
   pchl:
     image: ghcr.io/{{username}}/pchl:latest
     volumes:
-    - pchl:/app
+      - pchl:/app
     environment:
-    - PB_API:{{PB_API}}
-    port:
-    - 19080:19080
+      - PB_API:{{PB_API}}
+    ports:
+      - "19080:19080"
     deploy:
       update_config:
         order: start-first
