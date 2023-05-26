@@ -1,6 +1,5 @@
 import type { PagesRecord } from '@/@types/pocketbase-types';
 import Layout from '@/layouts/Home'
-import { getPageBySlug } from '@/utils/pb'
 
 function parseBoldText(text: string) {
   const parts = text.split(/(<b>.*?<\/b>)/g);
@@ -86,6 +85,7 @@ export default function Page({ data }: { slug: string, data: PagesRecord<Content
 }
 
 export async function getServerSideProps({ params }: { params: { slug: string } }) {
+  const { getPageBySlug } = await import("@/utils/pb");
   const { data, error } = await getPageBySlug(params.slug);
   if (error || !data) {
     return {
