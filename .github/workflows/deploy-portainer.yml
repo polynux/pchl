@@ -42,7 +42,7 @@ jobs:
         shell: bash
 
       - name: Deploy stack to Portainer
-        uses: carlrygart/portainer-stack-deploy@v1
+        uses: carlrygart/portainer-stack-deploy@v1.3
         with:
           portainer-host: ${{ secrets.PORTAINER_HOST }}
           username: ${{ secrets.PORTAINER_USERNAME }}
