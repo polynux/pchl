@@ -9,7 +9,7 @@ const ReactEditorJS = dynamic(() => import('@/components/ReactEditor'), {
 })
 
 export default function Editor() {
-  const [data, setData] = useState<OutputData>()
+  const [data, setData] = useState<OutputData>({blocks: [], time: 0, version: ''})
   const {mutate, isLoading, data: data2, isError} = api.pages.updatePage.useMutation();
 
   if (data2) console.log(data2)
@@ -34,7 +34,7 @@ export default function Editor() {
       <div className="container mx-auto p-8">
         <h2>EditorJS with React</h2>
         <div>
-          <ReactEditorJS data={data} onChange={setData} holder='editorjs' />
+          <ReactEditorJS autofocus data={data} onChange={setData} holder='editorjs' />
         </div>
         <h2>Output</h2>
         <pre>{JSON.stringify(data, null, 2)}</pre>
