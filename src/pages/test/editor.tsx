@@ -2,14 +2,15 @@ import dynamic from 'next/dynamic'
 import Layout from '@/layouts/Home'
 import { useState } from 'react'
 import { OutputData } from "@editorjs/editorjs";
+import { getPageBySlug } from '@/utils/pb';
 import { api } from '@/utils/api';
 
 const ReactEditorJS = dynamic(() => import('@/components/ReactEditor'), {
   ssr: false
 })
 
-export default function Editor() {
-  const [data, setData] = useState<OutputData>({blocks: [], time: 0, version: ''})
+export default function Editor({data: pbData}: {data: OutputData}) {
+  const [data, setData] = useState<OutputData>(pbData);
   const {mutate, isLoading, data: data2, isError} = api.pages.updatePage.useMutation();
 
   if (data2) console.log(data2)
@@ -41,4 +42,18 @@ export default function Editor() {
       </div>
     </Layout>
   )
+}
+
+export async function getServerSideProps({query}: {query: {[key: string]: string}}) {
+  if (!query.page) return {notFound: true}
+
+  const data = await getPageBySlug(query.page);
+
+  if (!data.data) return {notFound: true};
+
+  return {
+    props: {
+      data: data.data.content
+    }
+  }
 }
