@@ -9,7 +9,7 @@ const ReactEditorJS = dynamic(() => import('@/components/ReactEditor'), {
   ssr: false
 })
 
-export default function Editor({data: pbData}: {data: OutputData}) {
+export default function Editor({data: pbData, slug, title}: {data: OutputData, slug: string, title: string}) {
   const [data, setData] = useState<OutputData>(pbData);
   const {mutate, isLoading, data: data2, isError} = api.pages.updatePage.useMutation();
 
@@ -18,14 +18,14 @@ export default function Editor({data: pbData}: {data: OutputData}) {
   const handleSubmit = () => {
     if (!data) return
     mutate({
-      slug: 'test',
-      title: 'Test',
+      slug,
+      title,
       content: data
     })
   }
 
   return (
-    <Layout title='EditorJS'>
+    <Layout title={'Edition de ' + title}>
       <button onClick={handleSubmit}>Save</button>
       {isLoading && <p>Loading...</p>}
       {data2 && !isError && <p>Saved!</p>}
@@ -53,7 +53,9 @@ export async function getServerSideProps({query}: {query: {[key: string]: string
 
   return {
     props: {
-      data: data.data.content
+      data: data.data.content,
+      slug: query.page,
+      title: data.data.title
     }
   }
 }

@@ -36,6 +36,27 @@ function Heading({ text, level }: { text: string, level: number }) {
   }
 }
 
+function Column({ blocksData }: { blocksData: Block[][] }) {
+  if (blocksData.length === 0) return null;
+
+  return (
+    <div className="flex flex-row gap-6">
+      {blocksData.map((blocks, i) => {
+        return (<div className="flex flex-col gap-6 w-1/2" key={"col-" + i}>{blocks.map(block => {
+          switch (block.type) {
+            case 'paragraph':
+              return <Paragraph key={block.id} text={block.data.text} />
+            case 'header':
+              return <Heading key={block.id} text={block.data.text} level={block.data.level} />
+            default:
+              return null;
+          }
+        })}</div>)
+      })}
+    </div>
+  )
+}
+
 type ParagraphBlock = {
   type: 'paragraph',
   data: {
@@ -53,7 +74,15 @@ type HeaderBlock = {
   id: string,
 }
 
-type Block = ParagraphBlock | HeaderBlock;
+type ColumnBlock = {
+  type: 'column',
+  data: {
+    blocksData: Block[][],
+  },
+  id: string,
+}
+
+type Block = ParagraphBlock | HeaderBlock | ColumnBlock;
 
 type Content = {
   blocks: Block[],
@@ -73,6 +102,8 @@ export default function Page({ data }: { slug: string, data: PagesRecord<Content
                 return <Paragraph key={index} text={block.data.text} />
               case 'header':
                 return <Heading key={index} text={block.data.text} level={block.data.level} />
+              case 'column':
+                return <Column key={index} blocksData={block.data.blocksData} />
               default:
                 return <p key={index}>Unknown block type: <pre>{JSON.stringify(block, null, 2)}</pre></p>
             }
