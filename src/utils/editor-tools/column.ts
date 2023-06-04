@@ -2,7 +2,7 @@ import EditorJS, { BlockToolData, OutputBlockData, ToolConstructable } from "@ed
 import { EDITOR_JS_TOOLS } from "../tools";
 
 type ColumnData = {
-  columnsData: OutputBlockData[];
+  blocksData: OutputBlockData[][];
 };
 
 type ColumnConfig = {
@@ -16,7 +16,9 @@ class ColumnTool {
   private editors: EditorJS[];
 
   constructor({ data, config }: { data?: ColumnData; config?: ColumnConfig }) {
-    this.data = data ?? { columnsData: [] };
+    console.log("ColumnTool constructor");
+    console.log(data);
+    this.data = data ?? { blocksData: [[]] };
     this.wrapper = undefined;
     this.tools = config?.tools ?? EDITOR_JS_TOOLS;
     this.editors = [];
@@ -47,13 +49,12 @@ class ColumnTool {
   }
 
   render() {
-    console.log(this.tools);
     if (!this.wrapper) this.wrapper = document.createElement("div");
 
     const child = document.createElement("div");
     child.classList.add("flex", "flex-row", "w-full", "space-x-4");
 
-    const blocksData: BlockToolData[] = [];
+    const blocksData: BlockToolData[] = this.data.blocksData;
 
     for (let i = 0; i < 2; i++) {
       const column = this.createColumn();
@@ -64,20 +65,23 @@ class ColumnTool {
           const data = await api.saver.save();
           blocksData[i] = data.blocks;
         },
+        data: {
+          blocks: this.data.blocksData[i] || [],
+        },
       });
       child.appendChild(column);
       this.editors.push(editor);
     }
     this.wrapper.appendChild(child);
 
-    this.data.columnsData = blocksData;
+    this.data.blocksData = blocksData;
 
     return this.wrapper;
   }
 
   save() {
     return {
-      blocksData: this.data.columnsData,
+      blocksData: this.data.blocksData,
     };
   }
 
