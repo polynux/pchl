@@ -3,6 +3,7 @@
 */
 
 export enum Collections {
+	Files = "files",
 	Pages = "pages",
 	Users = "users",
 }
@@ -31,6 +32,10 @@ export type AuthSystemFields<T = never> = {
 
 // Record types for each collection
 
+export type FilesRecord = {
+	file: string
+}
+
 export type PagesRecord<Tcontent = unknown> = {
 	content?: null | Tcontent
 	title?: string
@@ -44,17 +49,20 @@ export type UsersRecord = {
 }
 
 // Response types include system fields and match responses from the PocketBase API
+export type FilesResponse = Required<FilesRecord> & BaseSystemFields
 export type PagesResponse<Tcontent = unknown> = Required<PagesRecord<Tcontent>> & BaseSystemFields
 export type UsersResponse = Required<UsersRecord> & AuthSystemFields
 
 // Types containing all Records and Responses, useful for creating typing helper functions
 
 export type CollectionRecords = {
+	files: FilesRecord
 	pages: PagesRecord
 	users: UsersRecord
 }
 
 export type CollectionResponses = {
+	files: FilesResponse
 	pages: PagesResponse
 	users: UsersResponse
 }
