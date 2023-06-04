@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Layout from "@/layouts/Home";
+import { PagesRecord } from "@/@types/pocketbase-types";
+import { Content, EditorRender } from "@/components/EditorRender";
 
-function Home() {
+function Home({ data }: { data: PagesRecord<Content>}) {
   return (
     <Layout title="Accueil">
       <Image
@@ -75,8 +77,27 @@ function Home() {
           </div>
         </div>
       </div>
+      <div className="container mx-auto p-8">
+        <EditorRender data={data} />
+      </div>
     </Layout>
   );
 }
 
 export default Home;
+
+export async function getServerSideProps() {
+  const { getPageBySlug } = await import("@/utils/pb");
+  const { data, error } = await getPageBySlug("home");
+  if (error || !data) {
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    props: {
+      data: data,
+    },
+  }
+}

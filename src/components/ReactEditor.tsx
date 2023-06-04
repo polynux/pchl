@@ -1,5 +1,5 @@
 import { memo, useEffect, useRef } from "react";
-import EditorJS from "@editorjs/editorjs";
+import EditorJS, { ToolConstructable } from "@editorjs/editorjs";
 import type { OutputData } from "@editorjs/editorjs";
 import { EDITOR_JS_TOOLS } from "@/utils/tools";
 // @ts-expect-error Undo is not a valid tool
@@ -7,6 +7,8 @@ import Undo from "editorjs-undo";
 // @ts-expect-error DragDrop is not a valid tool
 import DragDrop from "editorjs-drag-drop";
 import ColumnTool from "@/utils/editor-tools/column";
+
+import "@/styles/editor.css";
 
 type Props = {
   data?: OutputData;
@@ -25,7 +27,7 @@ const EditorBlock = ({ data, onChange, holder, autofocus }: Props) => {
         tools: {
           ...EDITOR_JS_TOOLS,
           column: {
-            class: ColumnTool,
+            class: ColumnTool as ToolConstructable,
             config: {
               tools: EDITOR_JS_TOOLS,
             },

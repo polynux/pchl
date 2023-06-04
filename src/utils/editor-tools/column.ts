@@ -54,10 +54,14 @@ class ColumnTool {
     const child = document.createElement("div");
     child.classList.add("flex", "flex-row", "w-full", "space-x-4");
 
-    const blocksData: BlockToolData[] = this.data.blocksData;
+    const blocksData: BlockToolData[] = this.data.blocksData?.length > 0 ? this.data.blocksData : [[]];
 
     for (let i = 0; i < 2; i++) {
+      if (this.editors[i]) return;
+
       const column = this.createColumn();
+      child.appendChild(column);
+
       const editor = new EditorJS({
         holder: column,
         tools: this.tools,
@@ -66,10 +70,9 @@ class ColumnTool {
           blocksData[i] = data.blocks;
         },
         data: {
-          blocks: this.data.blocksData[i] || [],
+          blocks: blocksData ? blocksData[i] : [],
         },
       });
-      child.appendChild(column);
       this.editors.push(editor);
     }
     this.wrapper.appendChild(child);

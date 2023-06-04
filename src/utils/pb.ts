@@ -68,4 +68,34 @@ async function getIdFromSlug(slug: string) {
   }
 }
 
+export async function uploadFile(file: File) {
+  try {
+    const res = await pb.collection("files").create(file);
+    return { data: res };
+  } catch (error) {
+    console.log(error);
+    return { error };
+  }
+}
+
+export async function listFiles() {
+  try {
+    const res = await pb.collection("files").getFullList();
+    return { data: res };
+  } catch (error) {
+    console.log(error);
+    return { error };
+  }
+}
+
+export async function getFile(id: string) {
+  try {
+    const res = await pb.collection("files").getOne(id);
+    return { data: res };
+  } catch (error) {
+    console.log(error);
+    return { error };
+  }
+}
+
 export { pb, getPages, getPageById, getPageBySlug, createPage, updatePage, getIdFromSlug };
