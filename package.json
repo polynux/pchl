@@ -8,7 +8,8 @@
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start",
-    "gen-types": "sh ./scripts/gen-types-from-pb.sh"
+    "gen-types": "sh ./scripts/gen-types-from-pb.sh",
+    "prepare": "panda codegen"
   },
   "dependencies": {
     "@editorjs/editorjs": "^2.27.0",
@@ -42,6 +43,7 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@pandacss/dev": "^0.3.1",
     "@types/node": "^18.16.7",
     "@types/prettier": "^2.7.2",
     "@types/react": "^18.2.6",

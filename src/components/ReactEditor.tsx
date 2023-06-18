@@ -8,8 +8,6 @@ import Undo from "editorjs-undo";
 import DragDrop from "editorjs-drag-drop";
 import ColumnTool from "@/utils/editor-tools/column";
 
-import "@/styles/editor.css";
-
 type Props = {
   data?: OutputData;
   onChange(val: OutputData): void;
@@ -58,7 +56,20 @@ const EditorBlock = ({ data, onChange, holder, autofocus }: Props) => {
     };
   }, []);
 
-  return <div id={holder} />;
+  return (
+    <>
+      <div id={holder} />
+      <style jsx>{`
+        .ce-block .ce-block__content {
+          max-width: unset;
+        }
+
+        .ce-toolbar .ce-toolbar__content {
+          max-width: unset;
+        }
+    `}</style>
+    </>
+  );
 };
 
 export default memo(EditorBlock);
